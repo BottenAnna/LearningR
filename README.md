@@ -1,6 +1,5 @@
 Anna H, Project Management and Orgnaizational behaviour
-
-TODO: Add more to the title of your project here
+TITLE: Learning R in the course "Reproducible Research in R" 
 
 # LearningR: The basics of R
 
