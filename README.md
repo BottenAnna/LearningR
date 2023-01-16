@@ -1,6 +1,8 @@
+Anna H, Project Management and Orgnaizational behaviour
+
 TODO: Add more to the title of your project here
 
-# LearningR:
+# LearningR: The basics of R
 
 TODO: Give a brief description of what your project is about
 
