@@ -3,7 +3,7 @@ TITLE: Learning R in the course "Reproducible Research in R"
 
 # LearningR: The basics of R
 
-This project will hopefully teach me about using R and version control for research purposes. We will see how it goes. [DELETE LATER] Add some more to test Push function.
+This project will hopefully teach me about using R and version control for research purposes. We will see how it goes. [DELETE LATER] Changing text to test GitHub Pull function.
 
 # Brief description of folder and file contents
 
