@@ -1,5 +1,5 @@
 Anna H, Project Management and Organizational behaviour
-TITLE: Learning R in the course "Research Research in R"
+TITLE: Learning R in the course "TICTICTIC Research in R"
 
 # LearningR: The basics of R
 
