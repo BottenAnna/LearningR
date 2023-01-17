@@ -184,3 +184,41 @@ nhanes_update <- nhanes_small %>%
       "young"
     )
   )
+
+
+# Exercise 7.12 -----------------------------------------------------------
+
+# 1. BMI between 20 and 40 with diabetes
+# nhanes_small %>%
+    # Format should follow: variable >= number or character
+#    filter(___ >= ___ & ___ <= ___ & ___ == ___)
+
+# Pipe the data into mutate function and:
+#nhanes_modified <- nhanes_small %>% # Specifying dataset
+#    mutate(
+        # 2. Calculate mean arterial pressure
+#        ___ = ___,
+        # 3. Create young_child variable using a condition
+#        ___ = if_else(___, "Yes", "No")
+#    )
+
+# nhanes_modified
+
+# filter data from existing dataset using columns and logic functions
+nhanes_small %>%
+    filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+
+# pipe data into mutate
+nhanes_modified <- nhanes_small %>% #specifying new dataset
+    mutate(
+        # calculate mean arterial pressure
+        mean_arterial_pressure = ((2*bp_dia_ave)+bp_sys_ave)/3,
+        # create new variable "young child" using if_else
+        young_child = if_else(
+            age <=6,
+            "young child",
+            "old child"
+        )
+    )
+nhanes_modified
+
