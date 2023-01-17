@@ -1,11 +1,9 @@
-Anna H, Project Management and Orgnaizational behaviour
+Anna H, Project Management and Organizational behaviour
 TITLE: Learning R in the course "Reproducible Research in R" 
 
 # LearningR: The basics of R
 
-TODO: Give a brief description of what your project is about
-
-This project...
+This project will hopefully teach me about using R and version control for research purposes. We will see how it goes.
 
 # Brief description of folder and file contents
 
