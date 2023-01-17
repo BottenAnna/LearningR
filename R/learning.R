@@ -1,5 +1,4 @@
-# Testing merge conflict from GitHub
-
+# Testing merge conflict from GitHub. Testing again.
 10
 
 # R basics ----------------------------------------------------------------
