@@ -69,3 +69,37 @@ nhanes_small
 
 # style code: command + shift + p: style
 
+
+# Fixing variable names ---------------------------------------------------
+
+# first object = dataset, rename to snakecase (without parentheses! Give it an object, not action (?))
+nhanes_small <- rename_with(
+  nhanes_small,
+  snakecase::to_snake_case
+)
+
+# check dataset
+nhanes_small
+
+# look at the dataset in Environment! Shows the whole table
+
+# rename one variable: new name first, old name last!
+nhanes_small <- rename(
+  nhanes_small,
+  sex = gender
+)
+
+
+# Piping of NHANES --------------------------------------------------------
+
+# traditional look
+colnames(nhanes_small)
+
+# piping (shortcut command + shift + M), places data in first position
+nhanes_small %>%
+  colnames()
+
+# rename with pipe
+nhanes_small %>%
+  select(phys_active) %>%
+  rename(physically_active = phys_active)
