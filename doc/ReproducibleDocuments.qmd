@@ -4,3 +4,46 @@ title: "Reproducible documents"
 author: "Anna H"
 format: html
 ---
+
+```{r setup}
+#| include: false
+# setup in the header of the code chunk tells it to run this code every time the document is opened (?), can only be used once per document
+# load libraries/packages and datasets
+library(tidyverse)
+nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
+# jamal can enable us to show or hide code and/or output in code chunks
+```
+
+```{r}
+#| include: false
+# command + option + i places code chunk on Mac
+```
+
+## Table of results
+
+```{r mean mean-age-bmi-table}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(phys_active), !is.na(education)) %>%
+  group_by(
+    diabetes,
+    phys_active,
+    education
+  ) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    ),
+    mean_bmi = mean(bmi,
+      na.rm = TRUE
+    )
+  ) %>%
+  ungroup() %>% 
+    knitr::kable(caption = "Men values of Age and BMI for each diabetes and physical values")
+```
+

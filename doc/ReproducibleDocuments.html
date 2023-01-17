@@ -21,69 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -130,26 +67,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="quarto-hashes-headings" class="level2">
-<h2 class="anchored" data-anchor-id="quarto-hashes-headings">Quarto [hashes = headings]</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
-</section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="table-of-results" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-results">Table of results</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Men values of Age and BMI for each diabetes and physical values</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">diabetes</th>
+<th style="text-align: left;">phys_active</th>
+<th style="text-align: left;">education</th>
+<th style="text-align: right;">max_bmi</th>
+<th style="text-align: right;">min_bmi</th>
+<th style="text-align: right;">mean_bmi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">8th Grade</td>
+<td style="text-align: right;">61.01</td>
+<td style="text-align: right;">15.98</td>
+<td style="text-align: right;">28.80644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">9 - 11th Grade</td>
+<td style="text-align: right;">66.96</td>
+<td style="text-align: right;">15.70</td>
+<td style="text-align: right;">29.06113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">College Grad</td>
+<td style="text-align: right;">52.34</td>
+<td style="text-align: right;">17.27</td>
+<td style="text-align: right;">28.85014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">High School</td>
+<td style="text-align: right;">80.60</td>
+<td style="text-align: right;">15.22</td>
+<td style="text-align: right;">29.45483</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Some College</td>
+<td style="text-align: right;">62.80</td>
+<td style="text-align: right;">15.98</td>
+<td style="text-align: right;">29.34936</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">8th Grade</td>
+<td style="text-align: right;">48.12</td>
+<td style="text-align: right;">19.60</td>
+<td style="text-align: right;">28.74170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">9 - 11th Grade</td>
+<td style="text-align: right;">45.96</td>
+<td style="text-align: right;">18.19</td>
+<td style="text-align: right;">27.64586</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">College Grad</td>
+<td style="text-align: right;">49.70</td>
+<td style="text-align: right;">17.10</td>
+<td style="text-align: right;">26.81511</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">High School</td>
+<td style="text-align: right;">56.80</td>
+<td style="text-align: right;">17.84</td>
+<td style="text-align: right;">28.12780</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Some College</td>
+<td style="text-align: right;">63.30</td>
+<td style="text-align: right;">15.02</td>
+<td style="text-align: right;">28.23467</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">8th Grade</td>
+<td style="text-align: right;">52.86</td>
+<td style="text-align: right;">21.07</td>
+<td style="text-align: right;">32.34313</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">9 - 11th Grade</td>
+<td style="text-align: right;">67.83</td>
+<td style="text-align: right;">18.80</td>
+<td style="text-align: right;">33.65747</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">College Grad</td>
+<td style="text-align: right;">45.82</td>
+<td style="text-align: right;">22.10</td>
+<td style="text-align: right;">31.43241</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">High School</td>
+<td style="text-align: right;">81.25</td>
+<td style="text-align: right;">15.86</td>
+<td style="text-align: right;">34.02629</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Some College</td>
+<td style="text-align: right;">68.63</td>
+<td style="text-align: right;">20.70</td>
+<td style="text-align: right;">34.19173</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">8th Grade</td>
+<td style="text-align: right;">40.50</td>
+<td style="text-align: right;">24.30</td>
+<td style="text-align: right;">30.28444</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">9 - 11th Grade</td>
+<td style="text-align: right;">45.39</td>
+<td style="text-align: right;">21.40</td>
+<td style="text-align: right;">30.85095</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">College Grad</td>
+<td style="text-align: right;">47.70</td>
+<td style="text-align: right;">20.60</td>
+<td style="text-align: right;">31.19787</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">High School</td>
+<td style="text-align: right;">45.91</td>
+<td style="text-align: right;">21.60</td>
+<td style="text-align: right;">33.28000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Some College</td>
+<td style="text-align: right;">56.50</td>
+<td style="text-align: right;">20.79</td>
+<td style="text-align: right;">31.34521</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 </section>
 
 </main>
