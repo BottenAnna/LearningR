@@ -1,5 +1,4 @@
 # Here's and example of a merge conflict.
-
 10
 
 # R basics ----------------------------------------------------------------
