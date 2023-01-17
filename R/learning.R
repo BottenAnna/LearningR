@@ -159,3 +159,28 @@ nhanes_small %>%
     filter (bmi == 25 |
             phys_active == "No")
 # Be careful around using "or"!
+
+
+# Arranging rows ----------------------------------------------------------
+
+# Look into arranging stuff (commands etc.)
+nhanes_small %>%
+    arrange(desc(age), bmi)
+
+
+# Mutating columns --------------------------------------------------------
+
+# Mutate adds things sequentially, you don't have to do several separate commands but can put all in one brackets
+# Remember: new thing = old thing!
+nhanes_update <- nhanes_small %>%
+    mutate(
+        age_months = age * 12,
+        logged_bmi = log(bmi),
+        age_weeks = age_months * 4,
+        old = if_else(
+            age >= 35,
+            "old",
+            "young"
+        )
+    )
+
