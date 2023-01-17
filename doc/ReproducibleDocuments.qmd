@@ -1,9 +1,20 @@
 ---
-# jamal header
+# YAML header
 title: "Reproducible documents"
 author: "Anna H"
 format: html
 ---
+
+1. Name: Anna
+2. Affiliation: Chalmers
+3. Impression thus far: Confusion
+
+# Introduction
+**This** is the *introduction*.
+There are some LEGO figures in @fig-LEGO!
+
+# Methods and results
+**Here** we find the results in the form of *three* tables
 
 ```{r setup}
 #| include: false
@@ -44,6 +55,96 @@ nhanes_small %>%
     )
   ) %>%
   ungroup() %>% 
-    knitr::kable(caption = "Men values of Age and BMI for each diabetes and physical values")
+    knitr::kable(caption = "Men values of Age and BMI for diabetes and physical values")
 ```
+
+## Prettier table COURSE
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  group_by(education, diabetes) %>%
+  summarize(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>% 
+    mutate(
+        # task 2A: Apply the round() function to mean_age and mean_bmi columns, to round the values to 1 digit (digits is the second argument of round()).
+        
+        # Check why the MEAN doesn't want to AVRUNDA till a whole number!
+        
+        mean_age = round(mean_age, 0),
+        mean_bmi = round(mean_bmi, 0),
+        
+        # task 2B: Use str_to_sentence(education) to capitalize the first letter of the words in the education column.
+        education = str_to_sentence(education)
+    ) %>%         
+        # task 3: Rename diabetes to "Diabetes Status", education to Education, and mean_age and mean_bmi to "Mean Age" and "Mean BMI", using rename() function. Hint: You can rename columns to include spaces by using " around the new column name (e.g. "Diabetes Status" = diabetes). Don’t forget, the renaming form is new = old.
+    rename(
+        "Diabetes Status" = diabetes,
+        "Education" = education,
+        "Mean Age" = mean_age,
+        "Mean BMI" = mean_bmi
+    ) %>% 
+    knitr::kable(caption = "Prettier BMI table based on course data")
+```
+
+
+## Prettier table OWN
+
+```{r prettier-table-OWN}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(age), !is.na(phys_active), !is.na(education)) %>%
+    # the order you group by defines the order of the table!
+  group_by( 
+    education, 
+    diabetes,
+    phys_active,
+  ) %>%
+  summarize(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE),
+    max_bmi = max(bmi, na.rm = TRUE),
+    min_bmi = min(bmi, na.rm = TRUE),
+  ) %>%
+    mutate(
+        # task 2A: Apply the round() function to mean_age and mean_bmi columns, to round the values to 1 digit (digits is the second argument of round()).
+        mean_age = round(mean_age, 1),
+        mean_bmi = round(mean_bmi, 1),
+        max_bmi = round(max_bmi, 1),
+        min_bmi = round(min_bmi, 1),
+        
+        # task 2B: Use str_to_sentence(education) to capitalize the first letter of the words in the education column.
+        education = str_to_sentence(education)
+        ) %>%         
+        # task 3: Rename diabetes to "Diabetes Status", education to Education, and mean_age and mean_bmi to "Mean Age" and "Mean BMI", using rename() function. Hint: You can rename columns to include spaces by using " around the new column name (e.g. "Diabetes Status" = diabetes). Don’t forget, the renaming form is new = old.
+    rename(
+        "Physically active" = phys_active,
+        "Diabetes Status" = diabetes,
+        "Education" = education,
+        "Mean Age" = mean_age,
+        "Mean BMI" = mean_bmi,
+        "Max BMI" = max_bmi,
+        "Min BMI" = min_bmi
+        # check why table doesn't show correctly (age and phys_active are in wrong place)
+        ) %>% 
+    ungroup() %>% 
+    knitr::kable(caption = "Prettier BMI table based on own preferences")
+```
+
+# Discussion
+**This** is a discussion on how it is *very* difficult to keep a clear overview of this jumbled mess of code.
+
+## Exercise 8.7: Inserting pictures
+This is exciting. I will now show a picture of LEGO.
+
+#### Inserting images
+![LEGO makes life worth living](Images/LEGO.jpg){#fig-LEGO}
 
