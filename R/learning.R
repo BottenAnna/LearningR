@@ -294,4 +294,22 @@ nhanes_small %>%
     mean_bmi = mean(bmi,
       na.rm = TRUE
     )
-  )
+  ) %>%
+  ungroup()
+# always end with ungroup: if you continue analysis later on, it might assume grouping!
+
+
+# Export dataset ----------------------------------------------------------
+
+# export dataset as csv
+write_csv(
+  nhanes_small,
+  here::here("data/nhanes_small.csv")
+)
+
+
+# Exercise 7.20 (OPTIONAL) ------------------------------------------------
+# https://r-cubed.rostools.org/sessions/data-management.html#optional-exercise-practicing-the-dplyr-functions
+
+
+
