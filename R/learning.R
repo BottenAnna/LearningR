@@ -190,15 +190,15 @@ nhanes_update <- nhanes_small %>%
 
 # 1. BMI between 20 and 40 with diabetes
 # nhanes_small %>%
-    # Format should follow: variable >= number or character
+# Format should follow: variable >= number or character
 #    filter(___ >= ___ & ___ <= ___ & ___ == ___)
 
 # Pipe the data into mutate function and:
-#nhanes_modified <- nhanes_small %>% # Specifying dataset
+# nhanes_modified <- nhanes_small %>% # Specifying dataset
 #    mutate(
-        # 2. Calculate mean arterial pressure
+# 2. Calculate mean arterial pressure
 #        ___ = ___,
-        # 3. Create young_child variable using a condition
+# 3. Create young_child variable using a condition
 #        ___ = if_else(___, "Yes", "No")
 #    )
 
@@ -206,19 +206,92 @@ nhanes_update <- nhanes_small %>%
 
 # filter data from existing dataset using columns and logic functions
 nhanes_small %>%
-    filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+  filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
 
 # pipe data into mutate
-nhanes_modified <- nhanes_small %>% #specifying new dataset
-    mutate(
-        # calculate mean arterial pressure
-        mean_arterial_pressure = ((2*bp_dia_ave)+bp_sys_ave)/3,
-        # create new variable "young child" using if_else
-        young_child = if_else(
-            age <=6,
-            "young child",
-            "old child"
-        )
+nhanes_modified <- nhanes_small %>% # specifying new dataset
+  mutate(
+    # calculate mean arterial pressure
+    mean_arterial_pressure = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+    # create new variable "young child" using if_else
+    young_child = if_else(
+      age <= 6,
+      "young child",
+      "old child"
     )
+  )
 nhanes_modified
 
+
+# Split-apply-combine -----------------------------------------------------
+
+# Summarize: answer NA because lack of missing values
+nhanes_small %>%
+  summarize(
+    max_bmi = max(bmi)
+  )
+# Summarize: fix NA by excluding NA from dataset (?) CHECK UNDERSTANDING
+nhanes_small %>%
+  summarize(
+    max_bmi = max(bmi, na.rm = TRUE)
+  )
+
+# Summarize: add min BMI
+nhanes_small %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    )
+  )
+
+# Group_by
+nhanes_small %>%
+  group_by(diabetes) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    )
+  )
+
+# Filter out NA: ! means "keep anything that's not missing in this column"
+# Adding mean BMI
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    ),
+    mean_bmi = mean(bmi,
+      na.rm = TRUE
+    )
+  )
+
+# Adding physically active to grouping
+# Filter out NA from phys_active
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(phys_active)) %>%
+  group_by(
+    diabetes,
+    phys_active
+  ) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    ),
+    mean_bmi = mean(bmi,
+      na.rm = TRUE
+    )
+  )
