@@ -104,7 +104,7 @@ nhanes_small %>%
   select(phys_active) %>%
   rename(physically_active = phys_active)
 
-# exercise 7.8
+# exercise 7.8 on course web page
 nhanes_small %>%
     select (bp_sys_ave, education)
 
@@ -126,3 +126,36 @@ nhanes_small %>%
     select (starts_with("bp_")) %>%
     rename (bp_systolic = bp_sys_ave)
 # OBS! Typo in the task: since the code hasn't saved nhanes_small as a new object, you need to write bp_sys_ave and NOT bp_sys as in the original task code!
+
+
+# Filtering rows ----------------------------------------------------------
+
+# Table 7.1 on course home page is a good summary of logic commands for filtering
+# Be careful of OR and AND!
+
+# "filter" uses logic to keep rows that are true and drops those that are false
+# Be careful with your logic use! doublecheck with somebody else so you don't make mistakes
+
+# == translates to "is equal to"
+nhanes_small %>%
+    filter(phys_active == "No")
+
+# != excludes, "is not equal to…"
+nhanes_small %>%
+    filter(phys_active != "No")
+
+# >= "greater or equal to"
+nhanes_small %>%
+    filter(bmi >= 25)
+
+# add logic commands!
+# comma (",") = "&" in filtering!
+nhanes_small %>%
+    filter (bmi >= 25 &
+                phys_active == "No")
+
+# "comma (",") = "&" in filtering!"or = |
+nhanes_small %>%
+    filter (bmi == 25 |
+            phys_active == "No")
+# Be careful around using "or"!
