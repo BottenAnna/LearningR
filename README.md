@@ -1,9 +1,9 @@
 Anna H, Project Management and Organizational behaviour
-TITLE: Learning R in the course "Research Research in R"
+TITLE: Learning R in the course "Reproducible Research in R"
 
 # LearningR: The basics of R
 
-This project will hopefully teach me about using R and version control for research purposes. We will see how it goes. [DELETE LATER] Changing text to test GitHub Pull function.
+This project will hopefully teach me about using R and version control for research purposes. We will see how it goes.
 
 # Brief description of folder and file contents
 
