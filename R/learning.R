@@ -103,3 +103,26 @@ nhanes_small %>%
 nhanes_small %>%
   select(phys_active) %>%
   rename(physically_active = phys_active)
+
+# exercise 7.8
+nhanes_small %>%
+    select (bp_sys_ave, education)
+
+nhanes_small %>%
+    rename (bp_sys = bp_sys_ave,
+            bp_dia = bp_dia_ave
+            )
+
+# Re-write this piece of code using the “pipe” operator:
+# select(nhanes_small, bmi, contains("age"))
+# contains has to be within "select"!
+nhanes_small %>%
+    select (bmi, contains ("age"))
+
+# rewrite:
+# blood_pressure <- select(nhanes_small, starts_with("bp_"))
+# rename(blood_pressure, bp_systolic = bp_sys)
+nhanes_small %>%
+    select (starts_with("bp_")) %>%
+    rename (bp_systolic = bp_sys_ave)
+# OBS! Typo in the task: since the code hasn't saved nhanes_small as a new object, you need to write bp_sys_ave and NOT bp_sys as in the original task code!
