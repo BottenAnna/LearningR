@@ -106,25 +106,26 @@ nhanes_small %>%
 
 # exercise 7.8 on course web page
 nhanes_small %>%
-    select (bp_sys_ave, education)
+  select(bp_sys_ave, education)
 
 nhanes_small %>%
-    rename (bp_sys = bp_sys_ave,
-            bp_dia = bp_dia_ave
-            )
+  rename(
+    bp_sys = bp_sys_ave,
+    bp_dia = bp_dia_ave
+  )
 
 # Re-write this piece of code using the “pipe” operator:
 # select(nhanes_small, bmi, contains("age"))
 # contains has to be within "select"!
 nhanes_small %>%
-    select (bmi, contains ("age"))
+  select(bmi, contains("age"))
 
 # rewrite:
 # blood_pressure <- select(nhanes_small, starts_with("bp_"))
 # rename(blood_pressure, bp_systolic = bp_sys)
 nhanes_small %>%
-    select (starts_with("bp_")) %>%
-    rename (bp_systolic = bp_sys_ave)
+  select(starts_with("bp_")) %>%
+  rename(bp_systolic = bp_sys_ave)
 # OBS! Typo in the task: since the code hasn't saved nhanes_small as a new object, you need to write bp_sys_ave and NOT bp_sys as in the original task code!
 
 
@@ -138,26 +139,26 @@ nhanes_small %>%
 
 # == translates to "is equal to"
 nhanes_small %>%
-    filter(phys_active == "No")
+  filter(phys_active == "No")
 
 # != excludes, "is not equal to…"
 nhanes_small %>%
-    filter(phys_active != "No")
+  filter(phys_active != "No")
 
 # >= "greater or equal to"
 nhanes_small %>%
-    filter(bmi >= 25)
+  filter(bmi >= 25)
 
 # add logic commands!
 # comma (",") = "&" in filtering!
 nhanes_small %>%
-    filter (bmi >= 25 &
-                phys_active == "No")
+  filter(bmi >= 25 &
+    phys_active == "No")
 
 # "comma (",") = "&" in filtering!"or = |
 nhanes_small %>%
-    filter (bmi == 25 |
-            phys_active == "No")
+  filter(bmi == 25 |
+    phys_active == "No")
 # Be careful around using "or"!
 
 
@@ -165,7 +166,7 @@ nhanes_small %>%
 
 # Look into arranging stuff (commands etc.)
 nhanes_small %>%
-    arrange(desc(age), bmi)
+  arrange(desc(age), bmi)
 
 
 # Mutating columns --------------------------------------------------------
@@ -173,14 +174,13 @@ nhanes_small %>%
 # Mutate adds things sequentially, you don't have to do several separate commands but can put all in one brackets
 # Remember: new thing = old thing!
 nhanes_update <- nhanes_small %>%
-    mutate(
-        age_months = age * 12,
-        logged_bmi = log(bmi),
-        age_weeks = age_months * 4,
-        old = if_else(
-            age >= 35,
-            "old",
-            "young"
-        )
+  mutate(
+    age_months = age * 12,
+    logged_bmi = log(bmi),
+    age_weeks = age_months * 4,
+    old = if_else(
+      age >= 35,
+      "old",
+      "young"
     )
-
+  )
