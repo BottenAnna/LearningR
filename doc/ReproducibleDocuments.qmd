@@ -148,7 +148,7 @@ This is exciting. I will now show a picture of LEGO.
 #### Inserting images
 ![LEGO makes life worth living](Images/LEGO.jpg){#fig-LEGO}
 
-## Visualizing data
+# Visualizing data
 
 There are a few way to plot data. Either use ggplot directly (see @fig-bmi-histo-all for an example) or by piping (see @fig-bmi-histo-excluded for an example).
 
@@ -158,7 +158,7 @@ BMI is a continuous variable which often are presented as histograms.
 **Categorical**
 Education is a categorical varible INERT MORE
 
-#### Using ggplot raw
+### Using ggplot raw
 
 The code: 
     dataset; 
@@ -177,7 +177,7 @@ ggplot(nhanes_small, aes(x = bmi)) +
 ```
 
 
-#### Using piping to define ggplot
+### Using piping to define ggplot
 You don't need to define data again since it's *piped* in.
 
 ```{r}
@@ -191,7 +191,7 @@ nhanes_small %>%
 ```
 
 
-#### Discrete variable
+## Discrete variable
 Here we're presenting dicrete variables as discussed earlier.
 ```{r}
 #| fig-cap: "Bar plot of education"
@@ -235,7 +235,7 @@ nhanes_small %>%
 
 ### Plotting two variables
 
-#### Plotting two *continuous* variables
+**Plotting two *continuous* variables**
 Dependent on the y axis, independent on the x axis. Here: how BMI affects bloodpressure.
 ```{r}
 #| echo: false
@@ -245,8 +245,7 @@ nhanes_small %>%
     geom_smooth(na.rm = TRUE)
 ```
 
-#### Plotting two *discrete* variables
-
+**Plotting two *discrete* variables**
 If you don't want to show missing values, filter them *before* piping the dataset into your graphic. It's also more readable and prettier in general.
 
 ```{r}
@@ -258,10 +257,10 @@ nhanes_small %>%
 ```
 
 
-#### Plotting discrete *and* continuous variables
-
+**Plotting discrete *and* continuous variables**
 First categorical/discrete variable. Then continuous variable.
-Categoricalvariable on the *x-axis*, continuous on the *y-axis*. 
+Categorical variable on the *x-axis*, continuous on the *y-axis*. 
+
 ```{r}
 #| fig-cap: "Violin plot of correlation beetween diabetes and BMI"
 #| echo: false
@@ -269,6 +268,225 @@ nhanes_small %>%
     filter(!is.na(diabetes), bmi <= 60) %>% 
     ggplot(aes(x = diabetes, y = bmi)) +
     geom_violin(na.rm = TRUE) +
-    geom_boxplot(na.rm = TRUE)
+    geom_boxplot(na.rm = TRUE, width = 0.1)
 ```
+
+### Exercise 9.5: Make a plot with one or two variables
+
+**TASK:** *For each task below, create a new code chunk for it. Copy and paste the template code shown in each task into its own code chunk. When you complete each task, run styler and render the document to make sure it works and to see the output.*
+
+Result:
+@fig-exercise95a
+@fig-exercise95b
+@fig-exercise95c
+
+```{r}
+#| echo: false
+library(NHANES)
+nhanes_exercise <- NHANES %>%
+  rename_with(snakecase::to_snake_case) %>%
+  rename(sex = gender)
+```
+
+### Task 9.5.a
+Create plots for age distribution of diabetes diagnois.
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Age distribution of diabetes diagnosis"
+#| layout-ncol: 2
+#| label: fig-exercise95a
+#| fig-subcap: 
+#|   - "1"
+#|   - "2"
+
+# Distribution of age
+nhanes_exercise %>% 
+    filter(!is.na(diabetes)) %>% 
+    ggplot(aes(x = age)) +
+    geom_density(na.rm = TRUE)
+
+# Distribution of age at diabetes diagnosis
+nhanes_exercise %>% 
+    filter(!is.na(diabetes)) %>% 
+    ggplot(aes(x = diabetes_age)) + 
+    geom_density()
+```
+
+### Task 9.5.b
+Create a bar chart of smokers over 20.
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Smokers over 20"
+#| label: fig-exercise95b
+nhanes_exercise %>% 
+    filter(!is.na(smoke_now), age >= 20) %>% 
+    ggplot(aes(x = smoke_now)) +
+    geom_bar()
+```
+
+### Task 9.5.c
+Creating a hex plot and a trend line (?) for blood pressure.
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Blood pressure"
+#| label: fig-exercise95c
+
+# BMI in relation to mean arterial pressure
+nhanes_exercise %>% 
+    mutate(mean_arterial_pressure = (bp_sys_ave + (2 * bp_dia_ave))/3) %>% 
+    ggplot(aes(x = bmi, y = mean_arterial_pressure)) +
+    geom_hex() +
+    geom_smooth()
+    
+```
+
+## Plotting *three or more* variables
+**TASK:** *Is systolic blood pressure different in those with or without diabetes and dependent on level of education?*
+
+Good for howing **one continuous** (blood pressure) + **two categorical** (diabetes, education) variables. Remember: blood pressure is continuous, better for y-axis!
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>% 
+    filter(!is.na(diabetes), !is.na(education)) %>%
+    ggplot(aes(x = education, y = bp_sys_ave, colour = diabetes)) +
+    geom_boxplot(na.rm = TRUE)
+    
+```
+
+**TASK:** *How does BMI relate to systolic blood pressure and age?*
+(Three continuous variables)
+
+Notice gradient of colour: due to contninuous nature of variable! Not A/B as with categorical variable (see above)!
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, color = age)) +
+    geom_point(na.rm = TRUE)
+```
+
+
+**TASK:** *How does BMI relate to systolic blood pressure, and what is different between those with and without diabetes?*
+(two continuous and one categorical variable)
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>% 
+    filter(!is.na(diabetes)) %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = diabetes)) +
+    geom_point(na.rm = TRUE) +
+    # add columns (cols) based on variables (vars) in facet function
+    facet_grid(cols = vars(diabetes))
+```
+Tips: *alpha* = transparence, insert in geom_GRAPHNAME(na.rm = TRUE, HERE)
+
+
+**FACETING**
+
+**TASK:** *How does BMI relate to systolic blood pressure, and what is the influence of diabete and education (and age)?*
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>% 
+    filter(!is.na(diabetes), !is.na(education)) %>% 
+    #x-axis is BMI; y-axis is blood pressure, aesthetic for colour based on age
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+    geom_point(na.rm = TRUE) +
+    # adding multi-directional faceting
+    facet_grid(rows = vars(diabetes),
+               cols = vars(education))
+
+```
+
+
+**SCALES AND THEMES**
+
+**TASK**: *Task text here*
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# creating a base plot
+base_plot <- nhanes_small %>% 
+    filter(!is.na(diabetes), !is.na(education)) %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, color = age)) +
+    geom_point(na.rm = TRUE) +
+    facet_grid(rows = vars(diabetes),
+               cols = vars(education))
+# add theme to plot by scale_
+base_plot +
+    scale_colour_viridis_c()
+```
+
+**PRE-DEFINED THEMES**
+
+**TASK:** *Task text here*
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# creating a base plot
+base_plot <- nhanes_small %>% 
+    filter(!is.na(diabetes), !is.na(education)) %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, color = age)) +
+    geom_point(na.rm = TRUE) +
+    facet_grid(rows = vars(diabetes),
+               cols = vars(education))
+# add theme to plot by scale_
+# define final plot (final_plot)
+final_plot <- base_plot +
+    scale_colour_viridis_c() +
+    # set theme (layout) of chart and x-axis and y-axis lables (labs)
+    theme_linedraw() +
+    labs(title = "BMI, systolic blood pressure and age by diabetes and education",
+         y = "Systolic blood pressure (mmHg)",
+         x = "BMI (kg/m2)")
+```
+
+**SAVING GRAPHS**
+
+.png
+```{r}
+ggsave(here::here("doc/Images/scatterplot.png"),
+       #  give plot you want to save
+       final_plot,
+       width = 7,
+       height = 5,
+       unit = "cm")
+```
+
+.pdf
+```{r}
+ggsave(here::here("doc/Images/scatterplot.pdf"),
+       #  give plot you want to save
+       final_plot,
+       width = 7,
+       height = 5)
+```
+
+.jpg
+```{r}
+ggsave(here::here("doc/Images/scatterplot.jpg"),
+       #  give plot you want to save
+       final_plot,
+       width = 7,
+       height = 5)
+```
+
 

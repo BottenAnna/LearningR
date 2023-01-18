@@ -633,13 +633,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="visualizing-data" class="level2">
-<h2 class="anchored" data-anchor-id="visualizing-data">Visualizing data</h2>
+</section>
+<section id="visualizing-data" class="level1">
+<h1>Visualizing data</h1>
 <p>There are a few way to plot data. Either use ggplot directly (see <a href="#fig-bmi-histo-all">Figure&nbsp;2</a> for an example) or by piping (see <a href="#fig-bmi-histo-excluded">Figure&nbsp;3</a> for an example).</p>
 <p><strong>Continuous</strong> BMI is a continuous variable which often are presented as histograms.</p>
 <p><strong>Categorical</strong> Education is a categorical varible INERT MORE</p>
-<section id="using-ggplot-raw" class="level4">
-<h4 class="anchored" data-anchor-id="using-ggplot-raw">Using ggplot raw</h4>
+<section id="using-ggplot-raw" class="level3">
+<h3 class="anchored" data-anchor-id="using-ggplot-raw">Using ggplot raw</h3>
 <p>The code: dataset; argument - aesthetic (define look); + (“add a layer”) argument - geometry (define how data is shown)</p>
 <p>If you’re unsure of which aesthetic you want to use: write ?geom_(aethetic) <strong>in the console</strong></p>
 <div class="cell">
@@ -658,8 +659,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="using-piping-to-define-ggplot" class="level4">
-<h4 class="anchored" data-anchor-id="using-piping-to-define-ggplot">Using piping to define ggplot</h4>
+<section id="using-piping-to-define-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="using-piping-to-define-ggplot">Using piping to define ggplot</h3>
 <p>You don’t need to define data again since it’s <em>piped</em> in.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nhanes_small <span class="sc">%&gt;%</span> </span>
@@ -679,8 +680,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="discrete-variable" class="level4">
-<h4 class="anchored" data-anchor-id="discrete-variable">Discrete variable</h4>
+<section id="discrete-variable" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-variable">Discrete variable</h2>
 <p>Here we’re presenting dicrete variables as discussed earlier.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nhanes_small <span class="sc">%&gt;%</span> </span>
@@ -726,12 +727,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Figure&nbsp;5: Counts of diabetes and education</figcaption><p></p>
 </figure>
 </div>
-</section>
 <section id="plotting-two-variables" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-two-variables">Plotting two variables</h3>
-<section id="plotting-two-continuous-variables" class="level4">
-<h4 class="anchored" data-anchor-id="plotting-two-continuous-variables">Plotting two <em>continuous</em> variables</h4>
-<p>Dependent on the y axis, independent on the x axis. Here: how BMI affects bloodpressure.</p>
+<p><strong>Plotting two <em>continuous</em> variables</strong> Dependent on the y axis, independent on the x axis. Here: how BMI affects bloodpressure.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
@@ -740,19 +738,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="plotting-two-discrete-variables" class="level4">
-<h4 class="anchored" data-anchor-id="plotting-two-discrete-variables">Plotting two <em>discrete</em> variables</h4>
-<p>If you don’t want to show missing values, filter them <em>before</em> piping the dataset into your graphic. It’s also more readable and prettier in general.</p>
+<p><strong>Plotting two <em>discrete</em> variables</strong> If you don’t want to show missing values, filter them <em>before</em> piping the dataset into your graphic. It’s also more readable and prettier in general.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="plotting-discrete-and-continuous-variables" class="level4">
-<h4 class="anchored" data-anchor-id="plotting-discrete-and-continuous-variables">Plotting discrete <em>and</em> continuous variables</h4>
-<p>First categorical/discrete variable. Then continuous variable. Categoricalvariable on the <em>x-axis</em>, continuous on the <em>y-axis</em>.</p>
+<p><strong>Plotting discrete <em>and</em> continuous variables</strong> First categorical/discrete variable. Then continuous variable. Categorical variable on the <em>x-axis</em>, continuous on the <em>y-axis</em>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -764,7 +756,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+<section id="exercise-9.5-make-a-plot-with-one-or-two-variables" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9.5-make-a-plot-with-one-or-two-variables">Exercise 9.5: Make a plot with one or two variables</h3>
+<p><strong>TASK:</strong> <em>For each task below, create a new code chunk for it. Copy and paste the template code shown in each task into its own code chunk. When you complete each task, run styler and render the document to make sure it works and to see the output.</em></p>
+<p>Result: <a href="#fig-exercise95a">Figure&nbsp;6</a> <a href="#fig-exercise95b">Figure&nbsp;7</a> <a href="#fig-exercise95c">Figure&nbsp;8</a></p>
+<div class="cell">
+
+</div>
 </section>
+<section id="task-9.5.a" class="level3">
+<h3 class="anchored" data-anchor-id="task-9.5.a">Task 9.5.a</h3>
+<p>Create plots for age distribution of diabetes diagnois.</p>
+<div id="fig-exercise95a" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-exercise95a-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-exercise95a-1.png" class="img-fluid figure-img" data-ref-parent="fig-exercise95a" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) 1</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-exercise95a-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-exercise95a-2.png" class="img-fluid figure-img" data-ref-parent="fig-exercise95a" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) 2</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Age distribution of diabetes diagnosis</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="task-9.5.b" class="level3">
+<h3 class="anchored" data-anchor-id="task-9.5.b">Task 9.5.b</h3>
+<p>Create a bar chart of smokers over 20.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise95b" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-exercise95b-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Smokers over 20</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="task-9.5.c" class="level3">
+<h3 class="anchored" data-anchor-id="task-9.5.c">Task 9.5.c</h3>
+<p>Creating a hex plot and a trend line (?) for blood pressure.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise95c" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-exercise95c-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Blood pressure</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plotting-three-or-more-variables" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-three-or-more-variables">Plotting <em>three or more</em> variables</h2>
+<p><strong>TASK:</strong> <em>Is systolic blood pressure different in those with or without diabetes and dependent on level of education?</em></p>
+<p>Good for howing <strong>one continuous</strong> (blood pressure) + <strong>two categorical</strong> (diabetes, education) variables. Remember: blood pressure is continuous, better for y-axis!</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>TASK:</strong> <em>How does BMI relate to systolic blood pressure and age?</em> (Three continuous variables)</p>
+<p>Notice gradient of colour: due to contninuous nature of variable! Not A/B as with categorical variable (see above)!</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>FACETING <strong>TASK:</strong> <em>How does BMI relate to systolic blood pressure, and what is different between those with and without diabetes?</em> (two continuous and one categorical variable)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Tips: <em>alpha</em> = transparence, insert in geom_GRAPHNAME(na.rm = TRUE, HERE)</p>
+<p><strong>FACETING</strong></p>
+<p><strong>TASK:</strong> <em>How does BMI relate to systolic blood pressure, and what is the influence of diabete and education (and age)?</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>SCALES AND THEMES</strong></p>
+<p><strong>TASK</strong>: <em>Task text here</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>PRE-DEFINED THEMES</strong></p>
+<p><strong>TASK:</strong> <em>Task text here</em></p>
+<div class="cell">
+
+</div>
+<p><strong>SAVING GRAPHS</strong></p>
+<p>.png</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"doc/Images/scatterplot.png"</span>),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="co">#  give plot you want to save</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       final_plot,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">5</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">"cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>.pdf</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"doc/Images/scatterplot.pdf"</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="co">#  give plot you want to save</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       final_plot,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>.jpg</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"doc/Images/scatterplot.jpg"</span>),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="co">#  give plot you want to save</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       final_plot,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 
