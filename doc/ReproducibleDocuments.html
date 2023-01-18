@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -568,6 +631,139 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: LEGO makes life worth living</figcaption><p></p>
 </figure>
 </div>
+</section>
+</section>
+<section id="visualizing-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-data">Visualizing data</h2>
+<p>There are a few way to plot data. Either use ggplot directly (see <a href="#fig-bmi-histo-all">Figure&nbsp;2</a> for an example) or by piping (see <a href="#fig-bmi-histo-excluded">Figure&nbsp;3</a> for an example).</p>
+<p><strong>Continuous</strong> BMI is a continuous variable which often are presented as histograms.</p>
+<p><strong>Categorical</strong> Education is a categorical varible INERT MORE</p>
+<section id="using-ggplot-raw" class="level4">
+<h4 class="anchored" data-anchor-id="using-ggplot-raw">Using ggplot raw</h4>
+<p>The code: dataset; argument - aesthetic (define look); + (“add a layer”) argument - geometry (define how data is shown)</p>
+<p>If you’re unsure of which aesthetic you want to use: write ?geom_(aethetic) <strong>in the console</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nhanes_small, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-bmi-histo-all" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-bmi-histo-all-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: BMI distribution (all).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="using-piping-to-define-ggplot" class="level4">
+<h4 class="anchored" data-anchor-id="using-piping-to-define-ggplot">Using piping to define ggplot</h4>
+<p>You don’t need to define data again since it’s <em>piped</em> in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nhanes_small <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(bmi <span class="sc">&lt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-bmi-histo-excluded" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-bmi-histo-excluded-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: BMI ditribution (outliers excluded).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="discrete-variable" class="level4">
+<h4 class="anchored" data-anchor-id="discrete-variable">Discrete variable</h4>
+<p>Here we’re presenting dicrete variables as discussed earlier.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nhanes_small <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> education)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-education-barplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-education-barplot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Bar plot of education</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we remove the respondents with diabetes by using !is.na(VARIABLE TO EXCLUDE)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>When combining charts the indentation in YAMAL is important. Remember double spacing when needed!</p>
+<p>Combining two charts:</p>
+<div id="fig-diabetes-education" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-diabetes-education-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-diabetes-education-1.png" class="img-fluid figure-img" data-ref-parent="fig-diabetes-education" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Diabetes</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-diabetes-education-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/fig-diabetes-education-2.png" class="img-fluid figure-img" data-ref-parent="fig-diabetes-education" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Education</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Counts of diabetes and education</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="plotting-two-variables" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-two-variables">Plotting two variables</h3>
+<section id="plotting-two-continuous-variables" class="level4">
+<h4 class="anchored" data-anchor-id="plotting-two-continuous-variables">Plotting two <em>continuous</em> variables</h4>
+<p>Dependent on the y axis, independent on the x axis. Here: how BMI affects bloodpressure.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotting-two-discrete-variables" class="level4">
+<h4 class="anchored" data-anchor-id="plotting-two-discrete-variables">Plotting two <em>discrete</em> variables</h4>
+<p>If you don’t want to show missing values, filter them <em>before</em> piping the dataset into your graphic. It’s also more readable and prettier in general.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotting-discrete-and-continuous-variables" class="level4">
+<h4 class="anchored" data-anchor-id="plotting-discrete-and-continuous-variables">Plotting discrete <em>and</em> continuous variables</h4>
+<p>First categorical/discrete variable. Then continuous variable. Categoricalvariable on the <em>x-axis</em>, continuous on the <em>y-axis</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ReproducibleDocuments_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Violin plot of correlation beetween diabetes and BMI</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 </section>

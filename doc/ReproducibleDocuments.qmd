@@ -148,3 +148,127 @@ This is exciting. I will now show a picture of LEGO.
 #### Inserting images
 ![LEGO makes life worth living](Images/LEGO.jpg){#fig-LEGO}
 
+## Visualizing data
+
+There are a few way to plot data. Either use ggplot directly (see @fig-bmi-histo-all for an example) or by piping (see @fig-bmi-histo-excluded for an example).
+
+**Continuous**
+BMI is a continuous variable which often are presented as histograms.
+
+**Categorical**
+Education is a categorical varible INERT MORE
+
+#### Using ggplot raw
+
+The code: 
+    dataset; 
+        argument - aesthetic (define look);
+            + ("add a layer")
+            argument - geometry (define how data is shown)
+            
+If you're unsure of which aesthetic you want to use: write ?geom_(aethetic) **in the console**
+
+```{r}
+#| fig-cap: "BMI distribution (all)."
+#| label: fig-bmi-histo-all
+#| #| echo: false
+ggplot(nhanes_small, aes(x = bmi)) + 
+    geom_histogram(na.rm = TRUE)
+```
+
+
+#### Using piping to define ggplot
+You don't need to define data again since it's *piped* in.
+
+```{r}
+#| fig-cap: "BMI ditribution (outliers excluded)."
+#| label: fig-bmi-histo-excluded
+#| #| echo: false
+nhanes_small %>% 
+    filter(bmi <= 60) %>% 
+    ggplot(aes(x = bmi)) +
+    geom_histogram(na.rm = TRUE)
+```
+
+
+#### Discrete variable
+Here we're presenting dicrete variables as discussed earlier.
+```{r}
+#| fig-cap: "Bar plot of education"
+#| label: fig-education-barplot
+#| #| echo: false
+nhanes_small %>% 
+    ggplot(aes(x = education)) + 
+    geom_bar()
+```
+
+Now we remove the respondents with diabetes by using !is.na(VARIABLE TO EXCLUDE)
+```{r}
+#| echo: false
+nhanes_small %>% 
+    filter(!is.na(diabetes)) %>% 
+    ggplot(aes(x = diabetes)) +
+    geom_bar()
+```
+
+When combining charts the indentation in YAMAL is important. Remember double spacing when needed!
+
+Combining two charts:
+```{r}
+#| fig-cap: "Counts of diabetes and education"
+#| label: fig-diabetes-education
+#| fig-subcap: 
+#|   - "Diabetes"
+#|   - "Education"
+#| layout-ncol: 2
+#| echo: false
+nhanes_small %>% 
+    filter(!is.na(diabetes)) %>% 
+    ggplot(aes(x = diabetes)) +
+    geom_bar()
+
+nhanes_small %>% 
+    filter(!is.na(education)) %>% 
+    ggplot(aes(x = education)) +
+    geom_bar()
+```
+
+### Plotting two variables
+
+#### Plotting two *continuous* variables
+Dependent on the y axis, independent on the x axis. Here: how BMI affects bloodpressure.
+```{r}
+#| echo: false
+nhanes_small %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave)) + 
+    geom_hex(na.rm = TRUE) +
+    geom_smooth(na.rm = TRUE)
+```
+
+#### Plotting two *discrete* variables
+
+If you don't want to show missing values, filter them *before* piping the dataset into your graphic. It's also more readable and prettier in general.
+
+```{r}
+#| echo: false
+nhanes_small %>% 
+    filter(!is.na(education), !is.na(diabetes)) %>% 
+    ggplot(aes(x = diabetes, fill = education)) +
+    geom_bar(position = position_dodge())
+```
+
+
+#### Plotting discrete *and* continuous variables
+
+First categorical/discrete variable. Then continuous variable.
+Categoricalvariable on the *x-axis*, continuous on the *y-axis*. 
+```{r}
+#| fig-cap: "Violin plot of correlation beetween diabetes and BMI"
+#| echo: false
+nhanes_small %>% 
+    filter(!is.na(diabetes), bmi <= 60) %>% 
+    ggplot(aes(x = diabetes, y = bmi)) +
+    geom_violin(na.rm = TRUE) +
+    geom_boxplot(na.rm = TRUE)
+```
+
